@@ -1,0 +1,165 @@
+@prefix coffee: <http://www.example.org/coffee#> .
+@prefix beans: <http://www.example.org/beans#> .
+@prefix shops: <http://www.example.org/shops#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology Declaration
+beans: a owl:Ontology ;
+    rdfs:label "Beans Ontology"@en ;
+    rdfs:comment "An ontology for detailed modeling of coffee beans, including varieties, certifications, and farms."@en .
+
+# Classes with Deep Hierarchy
+beans:Bean a owl:Class ;
+    owl:equivalentClass coffee:CoffeeBean ;
+    rdfs:label "Bean"@en ;
+    rdfs:comment "A class representing coffee beans, equivalent to coffee:CoffeeBean."@en .
+
+beans:Variety a owl:Class ;
+    rdfs:label "Variety"@en ;
+    rdfs:comment "A class representing genetic varieties of coffee beans."@en .
+
+beans:ArabicaVariety a owl:Class ;
+    rdfs:subClassOf beans:Variety ;
+    rdfs:label "Arabica Variety"@en ;
+    rdfs:comment "Varieties of Arabica beans."@en .
+
+beans:TypicaVariety a owl:Class ;
+    rdfs:subClassOf beans:ArabicaVariety ;
+    rdfs:label "Typica Variety"@en ;
+    rdfs:comment "The Typica variety of Arabica beans."@en .
+
+beans:BourbonVariety a owl:Class ;
+    rdfs:subClassOf beans:ArabicaVariety ;
+    rdfs:label "Bourbon Variety"@en ;
+    rdfs:comment "The Bourbon variety of Arabica beans."@en .
+
+beans:Certification a owl:Class ;
+    rdfs:label "Certification"@en ;
+    rdfs:comment "A class representing certifications for coffee beans (e.g., Organic)."@en .
+
+beans:Farm a owl:Class ;
+    rdfs:label "Farm"@en ;
+    rdfs:comment "A class representing farms where coffee beans are grown."@en .
+
+# Disjoint Classes
+[] a owl:AllDisjointClasses ;
+    owl:members (beans:Bean beans:Variety beans:Certification beans:Farm) .
+
+# Object Properties
+beans:hasVariety a owl:ObjectProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range beans:Variety ;
+    rdfs:label "has Variety"@en ;
+    rdfs:comment "Links a bean to its genetic variety."@en .
+
+beans:hasCertification a owl:ObjectProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range beans:Certification ;
+    rdfs:label "has Certification"@en ;
+    rdfs:comment "Links a bean to its certification status."@en .
+
+beans:grownOn a owl:ObjectProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range beans:Farm ;
+    rdfs:label "grown On"@en ;
+    rdfs:comment "Links a bean to the farm where it was grown."@en .
+
+# Data Properties
+beans:hasAltitude a owl:DatatypeProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has Altitude"@en ;
+    rdfs:comment "Specifies the growing altitude of a bean in meters."@en .
+
+beans:hasHarvestYear a owl:DatatypeProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has Harvest Year"@en ;
+    rdfs:comment "Specifies the harvest year of a bean."@en .
+
+beans:hasPricePerKg a owl:DatatypeProperty ;
+    rdfs:domain beans:Bean ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "has Price Per Kg"@en ;
+    rdfs:comment "Specifies the price per kilogram of a bean in USD."@en .
+
+# Individuals
+beans:YirgacheffeBean a beans:Bean, coffee:EthiopianTypica ;
+    rdfs:label "Yirgacheffe Bean"@en ;
+    beans:hasVariety beans:TypicaVariety ;
+    beans:hasCertification beans:Organic ;
+    beans:grownOn beans:FincaLaEsperanza ;
+    coffee:hasFlavor coffee:Fruity, coffee:Floral ;
+    coffee:hasRoast coffee:LightRoast ;
+    coffee:hasOrigin coffee:Ethiopia ;
+    coffee:processedBy coffee:Washed ;
+    beans:hasAltitude 1800 ;
+    beans:hasHarvestYear 2023;
+    beans:hasPricePerKg 20.0 ;
+    coffee:hasAcidityLevel "High" ;
+    coffee:hasBody "Light" .
+
+beans:BourbonBean a beans:Bean, coffee:Bourbon ;
+    rdfs:label "Bourbon Bean"@en ;
+    beans:hasVariety beans:BourbonVariety ;
+    beans:hasCertification beans:FairTrade ;
+    beans:grownOn beans:HaciendaElRoble ;
+    coffee:hasFlavor coffee:Chocolatey ;
+    coffee:hasRoast coffee:MediumRoast ;
+    coffee:hasOrigin coffee:Colombia ;
+    coffee:processedBy coffee:Washed ;
+    beans:hasAltitude 1500 ;
+    beans:hasHarvestYear 2023;
+    beans:hasPricePerKg 18.0 ;
+    coffee:hasAcidityLevel "Medium" ;
+    coffee:hasBody "Medium" .
+
+beans:GeishaBean a beans:Bean ;
+    rdfs:label "Geisha Bean"@en ;
+    beans:hasVariety beans:GeishaVariety ;
+    beans:hasCertification beans:RainforestAlliance ;
+    beans:grownOn beans:FincaLaEsperanza ;
+    coffee:hasFlavor coffee:Floral ;
+    coffee:hasRoast coffee:LightRoast ;
+    coffee:hasOrigin coffee:Panama ;
+    coffee:processedBy coffee:Washed ;
+    beans:hasAltitude 2000;
+    beans:hasHarvestYear 2023 ;
+    beans:hasPricePerKg 30.0 ;
+    coffee:hasAcidityLevel "High" ;
+    coffee:hasBody "Light" .
+
+beans:TypicaVariety a beans:Variety ;
+    rdfs:label "Typica Variety"@en ;
+    rdfs:comment "A variety of Arabica beans known for balance."@en .
+
+beans:BourbonVariety a beans:Variety ;
+    rdfs:label "Bourbon Variety"@en ;
+    rdfs:comment "A variety of Arabica beans known for sweetness."@en .
+
+beans:GeishaVariety a beans:Variety ;
+    rdfs:label "Geisha Variety"@en ;
+    rdfs:comment "A variety of Arabica beans known for complex flavors."@en .
+
+beans:Organic a beans:Certification ;
+    rdfs:label "Organic Certification"@en ;
+    rdfs:comment "Indicates organic farming practices."@en .
+
+beans:FairTrade a beans:Certification ;
+    rdfs:label "FairTrade Certification"@en ;
+    rdfs:comment "Indicates fair trade practices."@en .
+
+beans:RainforestAlliance a beans:Certification ;
+    rdfs:label "Rainforest Alliance Certification"@en ;
+    rdfs:comment "Indicates sustainable farming practices."@en .
+
+beans:FincaLaEsperanza a beans:Farm ;
+    rdfs:label "Finca La Esperanza"@en ;
+    rdfs:comment "A farm in Ethiopia growing high-quality beans."@en .
+
+beans:HaciendaElRoble a beans:Farm ;
+    rdfs:label "Hacienda El Roble"@en ;
+    rdfs:comment "A farm in Colombia growing premium beans."@en .
