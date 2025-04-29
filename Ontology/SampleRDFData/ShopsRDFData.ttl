@@ -1,0 +1,112 @@
+@prefix shops: <http://www.example.org/coffeeshops#> .
+@prefix coffee: <http://www.example.org/coffee#> .
+@prefix beans: <http://www.example.org/coffeebeans#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# Instances: Coffee Shop Brands
+shops:starbucks a shops:CoffeeShopBrand ;
+    rdfs:label "Starbucks"@en ;
+    shops:offersCoffee coffee:myEspresso, coffee:myLatte ;
+    shops:sourcesBean beans:arabica ;
+    rdfs:comment "Starbucks uses Arabica beans from Colombia and Ethiopia for its Espresso and Latte, with fruity and floral flavors"@en .
+
+shops:dunkin a shops:CoffeeShopBrand ;
+    rdfs:label "Dunkin'"@en ;
+    shops:offersCoffee coffee:myAmericano ;
+    shops:sourcesBean beans:arabica ;
+    rdfs:comment "Dunkin' sources Arabica beans from Colombia for its Americano, offering a smooth, fruity flavor"@en .
+
+shops:timHortons a shops:CoffeeShopBrand ;
+    rdfs:label "Tim Hortons"@en ;
+    shops:offersCoffee coffee:myCappuccino ;
+    shops:sourcesBean beans:arabica ;
+    rdfs:comment "Tim Hortons uses Arabica beans from Brazil for its Cappuccino, with a floral and fruity profile"@en .
+
+shops:lavazza a shops:CoffeeShopBrand ;
+    rdfs:label "Lavazza"@en ;
+    shops:offersCoffee coffee:myEspresso ;
+    shops:sourcesBean beans:arabica, beans:robusta ;
+    rdfs:comment "Lavazza blends Arabica and Robusta beans from Colombia and Brazil for its Espresso, with fruity and chocolatey notes"@en .
+
+shops:mcCafe a shops:CoffeeShopBrand ;
+    rdfs:label "McCafe"@en ;
+    shops:offersCoffee coffee:myLatte ;
+    shops:sourcesBean beans:arabica ;
+    rdfs:comment "McCafe uses Arabica beans from Colombia for its Latte, delivering a balanced, fruity taste"@en .
+
+# Relevant instances from coffee ontology (for reference)
+coffee:myEspresso a coffee:Espresso ;
+    coffee:hasCaffeineContent 63 ;
+    coffee:grown_in coffee:colombia ;
+    coffee:usesBean beans:arabica .
+
+coffee:myLatte a coffee:Latte ;
+    coffee:hasIngredient coffee:myMilk ;
+    coffee:hasCaffeineContent 77 ;
+    coffee:grown_in coffee:ethiopia ;
+    coffee:usesBean beans:arabica .
+
+coffee:myCappuccino a coffee:Cappuccino ;
+    coffee:hasCaffeineContent 77 ;
+    coffee:grown_in coffee:brazil ;
+    coffee:usesBean beans:arabica .
+
+coffee:myAmericano a coffee:Americano ;
+    coffee:hasIngredient coffee:myWater ;
+    coffee:hasCaffeineContent 77 ;
+    coffee:grown_in coffee:colombia ;
+    coffee:usesBean beans:arabica .
+
+coffee:myMilk a coffee:Milk .
+
+coffee:myWater a coffee:Water .
+
+coffee:colombia a coffee:Region ;
+    rdfs:label "Colombia"@en .
+
+coffee:ethiopia a coffee:Region ;
+    rdfs:label "Ethiopia"@en .
+
+coffee:brazil a coffee:Region ;
+    rdfs:label "Brazil"@en .
+
+# Relevant instances from coffee beans ontology (for reference)
+beans:arabica a beans:CoffeeBean ;
+    rdfs:label "Arabica"@en ;
+    beans:producedIn beans:colombia, beans:ethiopia ;
+    beans:hasFlavor beans:fruity, beans:floral ;
+    beans:hasVariety "Typica" .
+
+beans:robusta a beans:CoffeeBean ;
+    rdfs:label "Robusta"@en ;
+    beans:producedIn beans:brazil, beans:vietnam ;
+    beans:hasFlavor beans:earthy, beans:chocolatey ;
+    beans:hasVariety "Canephora" .
+
+beans:fruity a beans:FlavorProfile ;
+    rdfs:label "Fruity"@en .
+
+beans:floral a beans:FlavorProfile ;
+    rdfs:label "Floral"@en .
+
+beans:earthy a beans:FlavorProfile ;
+    rdfs:label "Earthy"@en .
+
+beans:chocolatey a beans:FlavorProfile ;
+    rdfs:label "Chocolatey"@en .
+
+beans:colombia a beans:Country ;
+    rdfs:label "Colombia"@en .
+
+beans:ethiopia a beans:Country ;
+    rdfs:label "Ethiopia"@en .
+
+beans:brazil a beans:Country ;
+    rdfs:label "Brazil"@en .
+
+beans:vietnam a beans:Country ;
+    rdfs:label "Vietnam"@en .

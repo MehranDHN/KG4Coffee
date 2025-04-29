@@ -1,0 +1,91 @@
+@prefix : <http://test.org/coffee.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Espresso a owl:Class ;
+    rdfs:subClassOf :Coffee ;
+    rdfs:label "Espresso"@en .
+
+:Latte a owl:Class ;
+    rdfs:subClassOf :Coffee ;
+    rdfs:label "Latte"@en .
+
+:Cappuccino a owl:Class ;
+    rdfs:subClassOf :Coffee ;
+    rdfs:label "Cappuccino"@en .
+
+:Americano a owl:Class ;
+    rdfs:subClassOf :Coffee ;
+    rdfs:label "Americano"@en .
+
+:Ingredient a owl:Class ;
+    rdfs:label "Ingredient"@en .
+
+:Milk a owl:Class ;
+    rdfs:subClassOf :Ingredient ;
+    rdfs:label "Milk"@en .
+
+:Water a owl:Class ;
+    rdfs:subClassOf :Ingredient ;
+    rdfs:label "Water"@en .
+
+# New class definition: Region
+:Region a owl:Class ;
+    rdfs:label "Region"@en .
+
+# Property definitions (original)
+:hasIngredient a owl:ObjectProperty ;
+    rdfs:domain :Coffee ;
+    rdfs:range :Ingredient ;
+    rdfs:label "has ingredient"@en .
+
+:hasCaffeineContent a owl:DatatypeProperty ;
+    rdfs:domain :Coffee ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has caffeine content"@en .
+
+# New property definition: grown_in
+:grown_in a owl:ObjectProperty ;
+    rdfs:domain :Coffee ;
+    rdfs:range :Region ;
+    rdfs:label "grown in"@en .
+
+# Sample data: Instances (original coffee and ingredient instances)
+# Espresso instance
+:myEspresso a :Espresso ;
+    :hasCaffeineContent 63 ;
+    :grown_in :colombia .
+
+# Latte instance with Milk
+:myLatte a :Latte ;
+    :hasIngredient :myMilk ;
+    :hasCaffeineContent 77 ;
+    :grown_in :ethiopia .
+
+# Cappuccino instance
+:myCappuccino a :Cappuccino ;
+    :hasCaffeineContent 77 ;
+    :grown_in :brazil .
+
+# Americano instance with Water
+:myAmericano a :Americano ;
+    :hasIngredient :myWater ;
+    :hasCaffeineContent 77 ;
+    :grown_in :colombia .
+
+# Ingredient instances
+:myMilk a :Milk .
+
+:myWater a :Water .
+
+# New instances: Regions
+:colombia a :Region ;
+    rdfs:label "Colombia"@en .
+
+:ethiopia a :Region ;
+    rdfs:label "Ethiopia"@en .
+
+:brazil a :Region ;
+    rdfs:label "Brazil"@en .

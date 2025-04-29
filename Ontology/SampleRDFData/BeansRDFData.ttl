@@ -1,0 +1,50 @@
+@prefix : <http://test.org/coffee.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+# Instances: Coffee Beans
+:arabica a :CoffeeBean ;
+    rdfs:label "Arabica"@en ;
+    :producedIn :colombia, :ethiopia ;
+    :hasFlavor :fruity, :floral ;
+    :hasVariety "Typica" .
+
+:robusta a :CoffeeBean ;
+    rdfs:label "Robusta"@en ;
+    :producedIn :brazil, :vietnam ;
+    :hasFlavor :earthy, :chocolatey ;
+    :hasVariety "Canephora" .
+
+# Instances: Flavor Profiles
+:fruity a :FlavorProfile ;
+    rdfs:label "Fruity"@en ;
+    rdfs:comment "Bright, fruit-like flavors, e.g., berry or citrus"@en .
+
+:floral a :FlavorProfile ;
+    rdfs:label "Floral"@en ;
+    rdfs:comment "Delicate, flower-like flavors, e.g., jasmine"@en .
+
+:earthy a :FlavorProfile ;
+    rdfs:label "Earthy"@en ;
+    rdfs:comment "Rich, soil-like flavors"@en .
+
+:chocolatey a :FlavorProfile ;
+    rdfs:label "Chocolatey"@en ;
+    rdfs:comment "Deep, cocoa-like flavors"@en .
+
+# Instances: Countries
+:colombia a :Country ;
+    rdfs:label "Colombia"@en .
+
+:ethiopia a :Country ;
+    rdfs:label "Ethiopia"@en .
+
+:brazil a :Country ;
+    rdfs:label "Brazil"@en .
+
+:vietnam a :Country ;
+    rdfs:label "Vietnam"@en .
+
